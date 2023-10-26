@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilterUnitsService } from 'src/app/services/filter-units.service';
 import { GetUnitsService } from 'src/app/services/get-units.service';
 import { Location } from 'src/app/types/location.interface';
@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.getUnitsService
       .getAllUnits()
-      .subscribe((data) => (this.results = data.locations));
+      .subscribe((data) => (this.results = data));
 
     this.formGroup = this.formBuilder.group({
       hour: '',
@@ -38,6 +38,8 @@ export class FormComponent implements OnInit {
       showClosed,
       hour
     );
+
+    this.getUnitsService.setFilteredUnits(this.filteredResults);
   }
 
   onClean() {
