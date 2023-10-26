@@ -30,3 +30,7 @@
   font-weight: 900;
   font-style: normal;
 }
+
+* {
+  @apply font-gotham box-border m-0 p-0;
+}
