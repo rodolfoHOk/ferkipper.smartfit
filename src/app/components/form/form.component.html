@@ -1,4 +1,5 @@
 <form
+  [formGroup]="formGroup"
   class="max-w-[80%] w-full mx-auto flex flex-col items-start justify-center gap-2 p-6 border-4 border-neutral-300 rounded-lg"
 >
   <div class="mb-6 flex items-center gap-2">
@@ -18,11 +19,13 @@
       <input
         class="cursor-pointer"
         type="radio"
-        name="morning"
+        name="hour"
         value="morning"
+        formControlName="hour"
       />
       <label class="text-light-grey" for="morning">Manhã</label>
     </div>
+
     <span class="text-light-grey">06:00 às 12:00</span>
   </div>
 
@@ -31,44 +34,64 @@
       <input
         class="cursor-pointer"
         type="radio"
-        name="afternoon"
+        name="hour"
         value="afternoon"
+        formControlName="hour"
       />
       <label class="text-light-grey" for="afternoon">Tarde</label>
     </div>
+
     <span class="text-light-grey">12:01 às 18:00</span>
   </div>
 
   <div class="w-full py-2 flex border-b-[1px] border-neutral-300 items-center">
     <div class="flex items-center flex-1 gap-2">
-      <input class="cursor-pointer" type="radio" name="night" value="night" />
+      <input
+        class="cursor-pointer"
+        type="radio"
+        name="hour"
+        value="night"
+        formControlName="hour"
+      />
       <label class="text-light-grey" for="night">Noite</label>
     </div>
+
     <span class="text-light-grey">18:01 às 23:00</span>
   </div>
 
-  <div class="w-full flex items-center mt-8 mb-6">
+  <div class="w-full flex items-center mt-8 mb-6 flex-col md:flex-row gap-8">
     <div class="flex flex-1 gap-2">
-      <input class="cursor-pointer" type="checkbox" name="show-closed" />
-      <label class="text-dark-grey" for="show-closed"
+      <input
+        class="cursor-pointer"
+        type="checkbox"
+        name="showClosed"
+        formControlName="showClosed"
+      />
+      <label class="text-dark-grey" for="showClosed"
         >Exibir unidades fechadas</label
       >
     </div>
+
     <div class="text-dark-grey">
       <span>Resultados encontrados: </span>
       <span class="font-bold">{{ results.length }}</span>
     </div>
   </div>
 
-  <div class="flex w-full items-center justify-center gap-6">
+  <div
+    class="flex w-full items-center justify-center gap-6 flex-col md:flex-row"
+  >
     <button
-      class="w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-yellow-default bg-yellow-default rounded cursor-pointer"
+      (click)="onSubmit()"
+      class="w-full md:w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-yellow-default bg-yellow-default rounded cursor-pointer"
       type="submit"
     >
       Encontrar unidade
     </button>
+
     <button
-      class="w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-light-grey rounded cursor-pointer"
+      (click)="onClean()"
+      class="w-full md:w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-light-grey rounded cursor-pointer"
       type="button"
     >
       Limpar
