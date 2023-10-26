@@ -1,0 +1,82 @@
+<div
+  class="w-full h-full p-4 flex flex-col items-start justify-start gap-4 rounded-lg bg-neutral-100 shadow-outer"
+>
+  <span
+    class="font-bold text-sm text-red-default"
+    [ngClass]="{ opened: unit.opened }"
+  >
+    {{ unit.opened ? 'Aberto' : 'Fechado' }}
+  </span>
+
+  <h3 class="font-bold text-2xl text-dark-grey">{{ unit.title }}</h3>
+
+  <p [innerHTML]="unit.content" class="text-light-grey text-sm"></p>
+
+  <div class="w-full h-[1px] bg-neutral-300"></div>
+
+  <ul class="flex justify-center items-center gap-2">
+    <li>
+      <img
+        class="h-16"
+        *ngIf="unit.mask === 'required'"
+        src="../../assets/images/png/required-mask.png"
+      />
+      <img
+        class="h-16"
+        *ngIf="unit.mask === 'recommended'"
+        src="../../assets/images/png/recommended-mask.png"
+      />
+    </li>
+
+    <li>
+      <img
+        class="h-16"
+        *ngIf="unit.towel === 'required'"
+        src="../../assets/images/png/required-towel.png"
+      />
+      <img
+        class="h-16"
+        *ngIf="unit.towel === 'recommended'"
+        src="../../assets/images/png/recommended-towel.png"
+      />
+    </li>
+
+    <li>
+      <img
+        class="h-16"
+        *ngIf="unit.fountain === 'partial'"
+        src="../../assets/images/png/partial-fountain.png"
+      />
+      <img
+        class="h-16"
+        *ngIf="unit.fountain === 'not_allowed'"
+        src="../../assets/images/png/forbidden-fountain.png"
+      />
+    </li>
+
+    <li>
+      <img
+        class="h-16"
+        *ngIf="unit.locker_room === 'allowed'"
+        src="../../assets/images/png/required-lockerroom.png"
+      />
+      <img
+        class="h-16"
+        *ngIf="unit.locker_room === 'partial'"
+        src="../../assets/images/png/partial-lockerroom.png"
+      />
+      <img
+        class="h-16"
+        *ngIf="unit.locker_room === 'closed'"
+        src="../../assets/images/png/forbidden-lockerroom.png"
+      />
+    </li>
+  </ul>
+
+  <ul class="w-full flex flex-wrap gap-4 mb-2">
+    <li class="flex flex-col" *ngFor="let schedule of unit.schedules">
+      <b class="font-bold text-xl text-dark-grey">{{ schedule.weekdays }}</b>
+      <p class="text-sm text-dark-grey">{{ schedule.hour }}</p>
+    </li>
+  </ul>
+</div>

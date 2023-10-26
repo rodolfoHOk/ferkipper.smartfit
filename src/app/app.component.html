@@ -1,5 +1,7 @@
 <div class="flex flex-col gap-6">
   <app-header></app-header>
 
-  <app-form></app-form>
+  <app-form (submitEvent)="onSubmit()"></app-form>
+
+  <app-list *ngIf="showList | async" [unitsList]="unitsList"></app-list>
 </div>
