@@ -2,6 +2,10 @@
 
 > Desafio de front-end da SmartFit
 
+## Descrição do desafio
+
+- https://github.com/bioritmo/front-end-code-challenge-smartsite
+
 ## Tecnologias
 
 - Typescript
