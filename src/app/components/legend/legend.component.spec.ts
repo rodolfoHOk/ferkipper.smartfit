@@ -8,7 +8,7 @@ describe('LegendComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LegendComponent]
+      declarations: [LegendComponent],
     });
     fixture = TestBed.createComponent(LegendComponent);
     component = fixture.componentInstance;
