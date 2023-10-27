@@ -38,10 +38,11 @@ describe('UnitCardComponent', () => {
     });
     fixture = TestBed.createComponent(UnitCardComponent);
     component = fixture.componentInstance;
-    (component.unit = MOCK_UNIT), fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create when has unit', () => {
+    component.unit = MOCK_UNIT;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

@@ -125,11 +125,19 @@ describe('AppComponent', () => {
     expect(appComponent).toBeTruthy();
   });
 
-  it('should create the app with list and unit card components', () => {
+  it('should render list and unit card components when showList is true and unitsList has items', () => {
     appComponent.showList = new BehaviorSubject(true);
     appComponent.unitsList = UNIT_LIST_MOCK.locations;
     fixture.detectChanges();
+    const listDebugElement = debugElement.query(By.directive(ListComponent));
+    const listComponent = listDebugElement.componentInstance;
+    const unitCardDebugElement = debugElement.query(
+      By.directive(UnitCardComponent)
+    );
+    const unitCardComponent = unitCardDebugElement.componentInstance;
     expect(appComponent).toBeTruthy();
+    expect(listComponent).toBeTruthy();
+    expect(unitCardComponent).toBeTruthy();
   });
 
   it('should call onSubmit when form component emit submitEvent', () => {
