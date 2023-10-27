@@ -12,7 +12,7 @@ import { ListComponent } from './components/list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UnitCardComponent } from './components/unit-card/unit-card.component';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 
 const UNIT_LIST_MOCK = {
   current_country_id: 1,
@@ -101,6 +101,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let appComponent: AppComponent;
   let debugElement: DebugElement;
+  let getUnitsService: GetUnitsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -117,6 +118,7 @@ describe('AppComponent', () => {
       providers: [GetUnitsService, HttpClient, HttpHandler],
     });
     fixture = TestBed.createComponent(AppComponent);
+    getUnitsService = TestBed.inject(GetUnitsService);
     appComponent = fixture.componentInstance;
     debugElement = fixture.debugElement;
   });
@@ -146,5 +148,21 @@ describe('AppComponent', () => {
     const formComponent = formDebugElement.componentInstance;
     formComponent.submitEvent.emit();
     expect(appComponent.onSubmit).toHaveBeenCalled();
+  });
+
+  it('should call getFilteredUnits when form component emit submitEvent', () => {
+    spyOn(getUnitsService, 'getFilteredUnits');
+    const formDebugElement = debugElement.query(By.directive(FormComponent));
+    const formComponent = formDebugElement.componentInstance;
+    formComponent.submitEvent.emit();
+    expect(getUnitsService.getFilteredUnits).toHaveBeenCalled();
+  });
+
+  it('should call next with true when form component emit submitEvent', () => {
+    spyOn(appComponent.showList, 'next');
+    const formDebugElement = debugElement.query(By.directive(FormComponent));
+    const formComponent = formDebugElement.componentInstance;
+    formComponent.submitEvent.emit();
+    expect(appComponent.showList.next).toHaveBeenCalledWith(true);
   });
 });
