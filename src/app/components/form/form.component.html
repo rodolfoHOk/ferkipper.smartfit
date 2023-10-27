@@ -82,6 +82,7 @@
     class="flex w-full items-center justify-center gap-6 flex-col md:flex-row"
   >
     <button
+      id="find-button"
       (click)="onSubmit()"
       class="w-full md:w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-yellow-default bg-yellow-default rounded cursor-pointer"
       type="submit"
@@ -90,6 +91,7 @@
     </button>
 
     <button
+      id="clear-button"
       (click)="onClean()"
       class="w-full md:w-[350px] px-2 py-3 flex items-center justify-center font-bold uppercase text-dark-grey border-[3px] border-light-grey rounded cursor-pointer"
       type="button"
