@@ -101,7 +101,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let appComponent: AppComponent;
   let debugElement: DebugElement;
-  let getUnitsService: GetUnitsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -118,9 +117,8 @@ describe('AppComponent', () => {
       providers: [GetUnitsService, HttpClient, HttpHandler],
     });
     fixture = TestBed.createComponent(AppComponent);
-    getUnitsService = TestBed.inject(GetUnitsService);
-    appComponent = fixture.componentInstance;
     debugElement = fixture.debugElement;
+    appComponent = debugElement.componentInstance;
   });
 
   it('should create the app', () => {
@@ -151,6 +149,7 @@ describe('AppComponent', () => {
   });
 
   it('should call getFilteredUnits when form component emit submitEvent', () => {
+    const getUnitsService = debugElement.injector.get(GetUnitsService);
     spyOn(getUnitsService, 'getFilteredUnits');
     const formDebugElement = debugElement.query(By.directive(FormComponent));
     const formComponent = formDebugElement.componentInstance;

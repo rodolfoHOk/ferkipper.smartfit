@@ -98,8 +98,8 @@ describe('ListComponent', () => {
       declarations: [ListComponent, UnitCardComponent],
     });
     fixture = TestBed.createComponent(ListComponent);
-    component = fixture.componentInstance;
     debugElement = fixture.debugElement;
+    component = debugElement.componentInstance;
     fixture.detectChanges();
   });
 
@@ -114,7 +114,6 @@ describe('ListComponent', () => {
       By.directive(UnitCardComponent)
     );
     const unitCardComponent = unitCardDebugElement.componentInstance;
-    expect(component).toBeTruthy();
     expect(unitCardComponent).toBeTruthy();
   });
 });
