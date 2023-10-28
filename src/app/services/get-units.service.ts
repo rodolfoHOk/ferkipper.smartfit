@@ -15,7 +15,7 @@ export class GetUnitsService {
     this.allUnitsSubject.asObservable();
   private filteredUnits: Location[] = [];
 
-  readonly apiUrl =
+  private readonly apiUrl =
     'https://test-frontend-developer.s3.amazonaws.com/data/locations.json';
 
   constructor(private httpClient: HttpClient) {
