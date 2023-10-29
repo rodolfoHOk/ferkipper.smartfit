@@ -13,6 +13,8 @@
 - Angular
 - Tailwind CSS
 - Docker
+- Testes unitários
+- Testes e2e (Cypress)
 
 ## Rodar
 
@@ -28,3 +30,19 @@
 ### Host
 
 - http://localhost
+
+## Testes como rodar
+
+### Requisitos
+
+- node.js instalado
+- clonar este repositório
+- instalar dependência com o comando: npm install
+
+### Rodar testes unitários
+
+- npm run test
+
+### Rodar testes e2e
+
+- npm run e2e
