@@ -1,4 +1,4 @@
-describe('My First Test', () => {
+describe('Homepage tests', () => {
   it('Visits the initial project page', () => {
     cy.visit('/');
     cy.contains('REABERTURA SMART FIT');
