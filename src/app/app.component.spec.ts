@@ -12,7 +12,7 @@ import { ListComponent } from './components/list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UnitCardComponent } from './components/unit-card/unit-card.component';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement } from '@angular/core';
+import { DebugElement } from '@angular/core';
 
 const UNIT_LIST_MOCK = {
   current_country_id: 1,
@@ -122,19 +122,35 @@ describe('AppComponent', () => {
   });
 
   it('should create the app', () => {
+    const headerComponent = debugElement.query(
+      By.directive(HeaderComponent)
+    ).componentInstance;
+    const formComponent = debugElement.query(
+      By.directive(FormComponent)
+    ).componentInstance;
+    const legendComponent = debugElement.query(
+      By.directive(LegendComponent)
+    ).componentInstance;
+    const footerComponent = debugElement.query(
+      By.directive(FooterComponent)
+    ).componentInstance;
     expect(appComponent).toBeTruthy();
+    expect(headerComponent).toBeTruthy();
+    expect(formComponent).toBeTruthy();
+    expect(legendComponent).toBeTruthy();
+    expect(footerComponent).toBeTruthy();
   });
 
   it('should render list and unit card components when showList is true and unitsList has items', () => {
     appComponent.showList = new BehaviorSubject(true);
     appComponent.unitsList = UNIT_LIST_MOCK.locations;
     fixture.detectChanges();
-    const listDebugElement = debugElement.query(By.directive(ListComponent));
-    const listComponent = listDebugElement.componentInstance;
-    const unitCardDebugElement = debugElement.query(
+    const listComponent = debugElement.query(
+      By.directive(ListComponent)
+    ).componentInstance;
+    const unitCardComponent = debugElement.query(
       By.directive(UnitCardComponent)
-    );
-    const unitCardComponent = unitCardDebugElement.componentInstance;
+    ).componentInstance;
     expect(appComponent).toBeTruthy();
     expect(listComponent).toBeTruthy();
     expect(unitCardComponent).toBeTruthy();
